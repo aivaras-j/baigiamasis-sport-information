@@ -146,6 +146,20 @@ public class ArticleController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @DeleteMapping("/news/article/{id}")
+    public ResponseEntity<String> deleteArticle(@PathVariable int id) {
+
+        Optional<Article> article = articleRepository.findById(id);
+        if (article.isPresent()) {
+
+            articleRepository.delete(article.get());
+
+            return new ResponseEntity<>("Article deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Article not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 ////
 
