@@ -1,7 +1,11 @@
 package com.baigiamasis.sportstream.sportType;
 
 import com.baigiamasis.sportstream.article.Article;
+import com.baigiamasis.sportstream.article.ArticleWithComments;
 import com.baigiamasis.sportstream.article.Articles;
+import com.baigiamasis.sportstream.comments.Comment;
+import com.baigiamasis.sportstream.event.Event;
+import com.baigiamasis.sportstream.event.EventRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +33,9 @@ public class SportTypeController {
     SportTypeRepository sportTypeRepository;
 
     @Autowired
+    EventRepository eventRepository;
+
+    @Autowired
     SportTypeService sportTypeService;
 
     @Autowired
@@ -38,14 +45,28 @@ public class SportTypeController {
     }
 
     @GetMapping("/news/sportType/{id}")
-    public ResponseEntity<SportType> sportTypeById(@PathVariable int id) {
+    public ResponseEntity<SportTypeWithEvents> sportTypeWithEventsById(@PathVariable int id) {
         Optional<SportType> sportType = sportTypeRepository.findById(id);
         if (sportType.isPresent()) {
-            return new ResponseEntity<>(sportType.get(), HttpStatus.OK);
+            List<Event> events = eventRepository.findAllBySportTypeId(id);
+            SportTypeWithEvents sportTypeWithEvents = new SportTypeWithEvents(sportType.get(), events);
+            sportTypeWithEvents.setId(id);
+            return new ResponseEntity<>(sportTypeWithEvents, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
+//    @GetMapping("/news/sportType/{id}")
+//    public ResponseEntity<SportType> sportTypeById(@PathVariable int id) {
+//        Optional<SportType> sportType = sportTypeRepository.findById(id);
+//        if (sportType.isPresent()) {
+//            return new ResponseEntity<>(sportType.get(), HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
 
 //    @GetMapping("/news/sportType/{id}")

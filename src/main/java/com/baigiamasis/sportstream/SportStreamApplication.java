@@ -44,10 +44,10 @@ public class SportStreamApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Article news1 = new Article("aaaa", "hhht", "llllllllllllllllllllll");
-        Article news2 = new Article("Antras", "hhht", "rrrrrrrrrrrrrrrrrrrrrr");
-        Article news3 = new Article("Trecias", "hhht", "aaaaaaaaaaaaaaaaaaaaaaa");
-        Article news4 = new Article("Ketvirtas", "hhht", "wwwwwwwwwwwwwwwwwwwwww");
+        Article news1 = new Article("aaaa", "https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=", "llllllllllllllllllllll");
+        Article news2 = new Article("Antras", "https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=", "rrrrrrrrrrrrrrrrrrrrrr");
+        Article news3 = new Article("Trecias", "https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=", "aaaaaaaaaaaaaaaaaaaaaaa");
+        Article news4 = new Article("Ketvirtas", "https://media.istockphoto.com/id/1141191007/vector/sports-set-of-athletes-of-various-sports-disciplines-isolated-vector-silhouettes-run-soccer.jpg?s=612x612&w=0&k=20&c=SEabW4SHZ7blMHJPxZNSTl_anOMHO3whQI7HIMxFpSg=", "wwwwwwwwwwwwwwwwwwwwww");
 
         articleRepository.saveAll(List.of(news1, news2, news3, news4));
 

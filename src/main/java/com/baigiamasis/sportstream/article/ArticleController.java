@@ -60,7 +60,7 @@ public class ArticleController {
         if (article.isPresent()) {
             List<Comment> comments = commentRepository.findByArticleId(id);
             ArticleWithComments articleWithComments = new ArticleWithComments(article.get(), comments);
-            articleWithComments.setId(id); // Nustatykite id tiesiogiai į ArticleWithComments objektą
+            articleWithComments.setId(id);
             return new ResponseEntity<>(articleWithComments, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
