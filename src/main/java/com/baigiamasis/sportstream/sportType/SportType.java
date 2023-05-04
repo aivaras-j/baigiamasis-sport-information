@@ -6,13 +6,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@RequiredArgsConstructor
-//@NoArgsConstructor
 @Data
 @Getter
 @Setter
@@ -29,7 +26,7 @@ public class SportType {
     private String name;
 
 
-
+    @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "sportType", fetch = FetchType.LAZY,

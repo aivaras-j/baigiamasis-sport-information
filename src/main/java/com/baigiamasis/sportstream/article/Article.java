@@ -7,14 +7,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-
-//import com.baigiamasis.sportstream.comments.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@RequiredArgsConstructor
-//@NoArgsConstructor
 @Data
 @Getter
 @Setter

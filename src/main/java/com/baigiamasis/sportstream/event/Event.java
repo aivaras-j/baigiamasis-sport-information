@@ -9,9 +9,6 @@ import lombok.*;
 
 
 @Entity
-//@RequiredArgsConstructor
-//@NoArgsConstructor
-//@Data
 @Getter
 @Setter
 @Table(name = "events")
@@ -33,8 +30,6 @@ public class Event {
     @NotBlank
     private String team;
 
-
-
     @NonNull
     @JsonIgnore
     @ToString.Exclude
@@ -51,7 +46,7 @@ public class Event {
     public Event(String name, String team, String place) {
         this.name = name;
         this.team = team;
-        this.place = team;
+        this.place = place;
 
     }
 
@@ -90,6 +85,8 @@ public class Event {
     public String getName() {
         return name;
     }
+
+
 
     public SportType getSportType() {
         return sportType;

@@ -10,9 +10,9 @@ import lombok.*;
 
 
 @Entity
-@Table(name = "comments")
 @Getter
 @Setter
+@Table(name = "comments")
 public class Comment {
 
     @Id

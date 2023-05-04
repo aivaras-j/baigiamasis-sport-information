@@ -3,6 +3,7 @@ package com.baigiamasis.sportstream.comments;
 import com.baigiamasis.sportstream.article.Article;
 import com.baigiamasis.sportstream.article.ArticleRepository;
 import com.baigiamasis.sportstream.article.ArticleService;
+import com.baigiamasis.sportstream.event.Event;
 import jakarta.validation.Valid;
 
 import org.slf4j.Logger;
@@ -13,10 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -60,6 +58,20 @@ public class CommentController {
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/news/article/{id}/commentDelete")
+    public ResponseEntity<String> deleteComment(@PathVariable int id) {
+
+        Optional<Comment> comment = commentRepository.findById(id);
+        if (comment.isPresent()) {
+
+            commentRepository.delete(comment.get());
+
+            return new ResponseEntity<>("Comment deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Comment not found", HttpStatus.NOT_FOUND);
+        }
     }
 
 //    @GetMapping("/news/article/{id}/comment")
