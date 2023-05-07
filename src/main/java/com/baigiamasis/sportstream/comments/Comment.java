@@ -33,7 +33,7 @@ public class Comment {
     @JoinColumn(name = "article_id", nullable = false)
     private Article article;
 
-    public Comment() {
+    public Comment(String s, String s1, Article article) {
     }
 
     public Comment(String name, String content) {

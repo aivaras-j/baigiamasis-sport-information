@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-
 @Entity
 @Getter
 @Setter
@@ -28,7 +27,11 @@ public class Event {
 
     @NotNull
     @NotBlank
-    private String team;
+    private String team1;
+
+    @NotNull
+    @NotBlank
+    private String team2;
 
     @NonNull
     @JsonIgnore
@@ -43,9 +46,10 @@ public class Event {
 
     }
 
-    public Event(String name, String team, String place) {
+    public Event(String name, String team1, String team2, String place) {
         this.name = name;
-        this.team = team;
+        this.team1 = team1;
+        this.team2 = team2;
         this.place = place;
 
     }
@@ -58,12 +62,20 @@ public class Event {
         this.name = name;
     }
 
-    public String getTeam() {
-        return team;
+    public String getTeam1() {
+        return team1;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
+    public String getTeam2() {
+        return team2;
+    }
+
+    public void setTeam1(String team1) {
+        this.team1 = team1;
+    }
+
+    public void setTeam2(String team2) {
+        this.team2 = team2;
     }
 
     public void setPlace(String place) {
@@ -87,7 +99,6 @@ public class Event {
     }
 
 
-
     public SportType getSportType() {
         return sportType;
     }
@@ -97,7 +108,8 @@ public class Event {
         return "Event{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", team='" + team + '\'' +
+                ", team1='" + team1 + '\'' +
+                ", team2='" + team2 + '\'' +
                 ", place='" + place + '\'' +
                 '}';
     }

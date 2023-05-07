@@ -1,10 +1,8 @@
 package com.baigiamasis.sportstream.event;
 
-import com.baigiamasis.sportstream.article.Article;
-import com.baigiamasis.sportstream.comments.Comment;
 import com.baigiamasis.sportstream.sportType.SportType;
 import com.baigiamasis.sportstream.sportType.SportTypeRepository;
-import com.baigiamasis.sportstream.sportType.SportTypeService;
+
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +23,6 @@ public class EventController {
     SportTypeRepository sportTypeRepository;
 
     @Autowired
-    SportTypeService sportTypeService;
-
-    @Autowired
-    EventService eventService;
-
-    @Autowired
     EventRepository eventRepository;
 
     @Autowired
@@ -39,7 +30,6 @@ public class EventController {
 
         this.eventRepository = repository;
     }
-
 
     @PostMapping("/news/sportType/{id}/newEvent")
     public ResponseEntity<Event> createNewEvent(@PathVariable("id") int id, @Valid @RequestBody Event event, BindingResult errors) {
@@ -60,14 +50,11 @@ public class EventController {
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
     @DeleteMapping("/news/sportType/{id}")
     public ResponseEntity<String> deleteEvent(@PathVariable int id) {
-
-        Optional<Event> event = eventRepository.findById(id);
-        if (event.isPresent()) {
-
-            eventRepository.delete(event.get());
-
+        if (eventRepository.existsById(id)) {
+            eventRepository.deleteById(id);
             return new ResponseEntity<>("Event deleted successfully", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Event not found", HttpStatus.NOT_FOUND);

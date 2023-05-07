@@ -1,9 +1,5 @@
 package com.baigiamasis.sportstream.sportType;
 
-import com.baigiamasis.sportstream.article.Article;
-import com.baigiamasis.sportstream.article.ArticleWithComments;
-import com.baigiamasis.sportstream.article.Articles;
-import com.baigiamasis.sportstream.comments.Comment;
 import com.baigiamasis.sportstream.event.Event;
 import com.baigiamasis.sportstream.event.EventRepository;
 import jakarta.validation.Valid;
@@ -13,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +21,6 @@ import java.util.Optional;
 public class SportTypeController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
 
     @Autowired
     SportTypeRepository sportTypeRepository;
@@ -54,8 +47,6 @@ public class SportTypeController {
         }
     }
 
-
-
     @GetMapping("/news/sportTypes")
     public ResponseEntity<SportTypes> sportTypes() {
         return new ResponseEntity<>(
@@ -64,15 +55,11 @@ public class SportTypeController {
         );
     }
 
-
-
     @PostMapping("news/sportType/new")
     public ResponseEntity<SportType> createNewSportType(@Valid @RequestBody SportType sportType) {
         SportType created = sportTypeRepository.save(sportType);
         logger.info("New sportType: {}", sportType);
         return new ResponseEntity<>(created, HttpStatus.OK);
     }
-
-
 
 }

@@ -1,4 +1,4 @@
-package com.baigiamasis.sportstream.comments;
+package com.baigiamasis.sportstream.event;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +10,12 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Comments {
+public class Events {
 
     @NonNull
-    private List<Comment> comments;
+    private List<Event> events;
 
-    public static Comments of(List<Comment> comments) {
-        return new Comments(comments);
+    public static Events of(List<Event> events) {
+        return new Events(events);
     }
 }

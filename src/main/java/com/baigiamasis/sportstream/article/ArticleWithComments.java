@@ -25,4 +25,5 @@ public class ArticleWithComments extends Article {
     public int getId() {
         return super.getId();
     }
+
 }

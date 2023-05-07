@@ -34,7 +34,7 @@ public class Article {
     @Column(columnDefinition = "blob")
     @NonNull
     @Size(
-            min=5,
+            min = 5,
             message = "Text lenght is too short. Must be minimum 5 text simbols."
     )
     private String text;
@@ -54,8 +54,6 @@ public class Article {
         comments.add(comment);
         comment.setArticle(this);
     }
-
-
 
     public Article(@NonNull String title, @NonNull String imageUrl, @NonNull String text) {
         this.title = title;
@@ -83,11 +81,10 @@ public class Article {
     public String getText() {
         return text;
     }
+
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-
-
 
     @Override
     public String toString() {
